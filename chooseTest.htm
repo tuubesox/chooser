@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Choose Test</title>
+
+    <style type="text/css">
+      * {
+          color: black;
+          font-family: arial;
+          font-size: 100%;
+      }
+      #header {
+          text-align: center;
+          background-color: #b80000;
+          line-height: 1.0;
+          padding: 30px;
+          margin: -10px;
+      }
+      h1 {
+          color: white;
+          text-align: left;
+          background-color: #b80000;
+          line-height: 1.0;
+      }
+      #h1-greater {
+          font-size: 180%;
+      }
+      #h1-lesser {
+          color: white;
+          font-size: 50%;
+      }
+      h2 {
+          color: #b80000;
+          font-size: 120%;
+          text-align: center;
+          text-decoration: underline;
+      }
+      p, .cb {
+          font-size: 100%;
+      }
+      #p01 {
+          font-size: 24pt;
+          color: fuchsia;
+      }
+      #cent {
+          text-align: center;
+      }
+      pb {
+          color: black;
+          font-size: 100%;
+          font-weight: bold;
+      }
+    </style>
+
+</head>
+
+<body>
+
+<div id="header" style="vertical-align: text-top">
+    <table style="width:50%" align="center">
+        <tr>
+            <td> </td>
+            <td>
+                <h1 id="h1-greater">Choose Test<br>
+                <span id="h1-lesser">Choose from the items below</span></h1>
+            </td>
+        </tr>
+    </table>
+</div>
+
+</div>
+
+<div id="container" style="padding-left:25%">
+
+<p class="cent">Select all the items you want, then press the 'Choose' button</p>
+<p></p>
+<p></p>
+<p></p>
+<pb>Colors</pb>
+<p></p>
+
+<form>
+  <p>
+    <input type="checkbox" id="serv1" class="cb" name="service" value = "Red"    checked><label for="serv1">Red</label><br>
+    <input type="checkbox" id="serv2" class="cb" name="service" value = "Orange" checked><label for="serv2">Orange</label><br>
+    <input type="checkbox" id="serv3" class="cb" name="service" value = "Blue"   checked><label for="serv3">Blue</label><br>
+    <input type="checkbox" id="serv4" class="cb" name="service" value = "Green"  checked><label for="serv4">Green</label>
+  </p>
+</form>
+
+<p></p>
+<p></p>
+
+<p></p>
+<p> Service Value: <a id="my_service" style="color:red;"> none </a> </p>
+<p></p>
+<p></p>
+<p></p>
+<script>
+
+function getService() {
+  var serv = document.getElementsByName('service');
+  var randServ = "";
+  var servCount;
+  var servList = [];
+  for(var ii = 0; ii < serv.length; ii++) {
+    if (serv[ii].checked) {
+      servCount = servList.length + 1;
+      servList.push(serv[ii].value);
+    }
+  }
+  randServ = servList[ Math.floor(Math.random() * servCount) ];
+  return randServ;
+}
+
+</script>
+
+<button class="cb"
+    onclick='document.getElementById("my_service").innerHTML = getService();'
+  >Choose</button>
+</p>
+
+<p></p>
+<p></p>
+<p>Good Luck!</p>
+
+</div>
+</body>
+</html>
