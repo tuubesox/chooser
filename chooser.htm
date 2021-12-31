@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Random Entertainment Chooser</title>
+
+    <style type="text/css">
+      * {
+          color: black;
+          font-family: arial;
+          font-size: 100%;
+      }
+      #header {
+          text-align: center;
+          background-color: #b80000;
+          line-height: 1.0;
+          padding: 30px;
+          margin: -10px;
+      }
+      h1 {
+          color: white;
+          text-align: left;
+          background-color: #b80000;
+          line-height: 1.0;
+      }
+      #h1-greater {
+          font-size: 180%;
+      }
+      #h1-lesser {
+          color: white;
+          font-size: 50%;
+      }
+      h2 {
+          color: #b80000;
+          font-size: 120%;
+          text-align: center;
+          text-decoration: underline;
+      }
+      p, .cb {
+          font-size: 100%;
+      }
+      #p01 {
+          font-size: 24pt;
+          color: fuchsia;
+      }
+      #cent {
+          text-align: center;
+      }
+      pb {
+          color: black;
+          font-size: 100%;
+          font-weight: bold;
+      }
+    </style>
+
+</head>
+
+<!-- BODY Starts Here -->
+
+<body>
+
+<div id="header" style="vertical-align: text-top">
+    <table style="width:50%" align="center">
+        <tr>
+            <td>
+                <!-- I used an image converter at:  https://onlineimagetools.com/convert-image-to-base64  -->
+                <!-- <img src="https://s0.wp.com/wp-content/themes/pub/notesil/i/logo.gif" style="vertical-align:top" alt="icon" class="blog-icon" />  -->
+                <img src="data:image/gif;base64,R0lGODlhMgAyAHAAACwAAAAAMgAyAIH///8AAADDw8MAAAACoISPqcvtD6OctM6As9bW7p91FQiKFPmZF8qpEdu6DxzKMx3YN607eN5j/IJCHHExPCaSyqZCAI1KpYAh8zDNRqvGq0Gr5fK8AHBWDEOznmaq1Zhou7twhHz75sXvAjXKT8J2B1hCxteXl7Y3mLi2KEeYYsgXuVEZg0XZ+OfUeUB2BEokGkTaY6qDaqMqw+riqgJrIitC22HrUee5y9vbUQAAOw==" style="vertical-align:top" alt="icon" class="blog-icon" />
+            </td>
+            <td>
+                <h1 id="h1-greater">Random Entertainment Chooser<br>
+                <span id="h1-lesser">Choose Which Movie or TV Show to Watch Next</span></h1>
+            </td>
+        </tr>
+    </table>
+</div><!--  #header -->
+
+<h2 class="entry-title">Randomness is next to&nbsp;Godliness</h2>
+</div>
+
+<div id="container" style="padding-left:25%">
+
+<!-- **************************************************************************
+               ***  HERE IS WHERE IT GETS INTERESTING  ***
+     ************************************************************************** -->
+
+<p class="cent">Select all the items you want from the radio buttons. Then press the 'Update' and 'Choose' buttons</p>
+<p></p>
+<p>Multiple options can be selected here. Program will randomly select among those you have chosen. </p>
+<p></p>
+<p></p>
+<p></p>
+<pb>The Service</pb>
+<p></p>
+
+<form>
+  <p>
+    <!-- // Besides 'checked' can also use required' or 'disabled'   -->
+    <input type="checkbox" id="serv1" class="cb" name="service" value = "Netflix"      checked><label for="serv1">Netflix</label><br>
+    <input type="checkbox" id="serv2" class="cb" name="service" value = "Hulu"         checked><label for="serv2">Hulu</label><br>
+    <input type="checkbox" id="serv3" class="cb" name="service" value = "Disney+"      checked><label for="serv3">Disney+</label><br>
+    <input type="checkbox" id="serv4" class="cb" name="service" value = "Amazon Prime" checked><label for="serv4">Amazon Prime</label>
+  </p>
+</form>
+
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<pb>The Genre</pb>
+<p></p>
+
+<form>
+  <p>
+    <!-- // Besides 'checked' can also use required' or 'disabled'   -->
+    <input type="checkbox" id="gen1" class="cb" name="genre" value = "Comedy"      checked><label for="gen1">Comedy</label><br>
+    <input type="checkbox" id="gen2" class="cb" name="genre" value = "Drama"       checked><label for="gen2">Drama</label><br>
+    <input type="checkbox" id="gen3" class="cb" name="genre" value = "Sci-Fi+"     checked><label for="gen3">Sci-Fi</label><br>
+    <input type="checkbox" id="gen4" class="cb" name="genre" value = "Action"      checked><label for="gen4">Action</label><br>
+    <input type="checkbox" id="gen5" class="cb" name="genre" value = "Documentary" checked><label for="gen5">Documentary</label>
+  </p>
+</form>
+
+
+<!-- Update the Value  -->
+
+<p></p>
+<p> Service Value: <a id="my_service" style="color:red;"> none </a> </p>
+<p> Genre Value:   <a id="my_genre"   style="color:red;"> none </a> </p>
+<p></p>
+<p></p>
+<p></p>
+<script>
+
+function getService() {
+  var serv = document.getElementsByName('service');
+  var randServ = "";
+  var servCount;
+  var servList = [];
+  // var servCode = 0;
+  // var servText = "";
+  for(var ii = 0; ii < serv.length; ii++) {
+    if (serv[ii].checked) {
+      // servCode = servCode + 2**ii;
+      // servText = servText + ' ' + serv[ii].value;
+      servCount = servList.length + 1;
+      servList.push(serv[ii].value);
+    }
+  }
+  randServ = servList[ Math.floor(Math.random() * servCount) ];
+  return randServ;
+}
+
+function getGenre() {
+  var gen = document.getElementsByName('genre');
+  var randGen = "";
+  var genList = [];
+  // var genCode = 0;
+  // var genText = "";
+  for(var ii = 0; ii < gen.length; ii++) {
+    if (gen[ii].checked) {
+      // genCode = genCode + 2**ii;
+      // genText = genText + ' ' + gen[ii].value;
+      genCount = genList.length + 1;
+      genList.push(gen[ii].value);
+    }
+  }
+  randGen = genList[ Math.floor(Math.random() * genCount) ];
+  return randGen;
+}
+
+</script>
+
+<button class="cb"
+    onclick='document.getElementById("my_service").innerHTML = getService();
+             document.getElementById("my_genre"  ).innerHTML = getGenre();'
+  >Update</button>
+</p>
+
+<!-- Random Number Section  -->
+<form action="/action_page.php">
+  <p>
+    <label for="MaxRows" class="cb">Maximum Rows:</label>
+    <input type="number" id="MaxRows" name="MaxRows" value=10><br><br>
+    <label for="MaxCols" class="cb">Maximum Columns:</label>
+    <input type="number" id="MaxCols" name="MaxCols" value=10>
+  </p>
+</form>
+
+<p></p>
+<p> Row Value:&emsp;    <a id="rand1" style="color:red;"> none </a> </p>
+<p> Column Value:&emsp; <a id="rand2" style="color:red;"> none </a> </p>
+
+<button class="btn btn-success cb"
+  onclick='myRand1 = Math.floor(Math.random() * document.getElementById("MaxRows").value) +1;
+           myRand2 = Math.floor(Math.random() * document.getElementById("MaxCols").value) +1;
+           document.getElementById("rand1").innerHTML = myRand1;
+           document.getElementById("rand2").innerHTML = myRand2;'>
+  Choose
+</button>
+
+
+
+<p></p>
+<p></p>
+<p>Good Luck!</p>
+
+</div><!-- container -->
+</body>
+</html>
